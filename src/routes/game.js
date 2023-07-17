@@ -58,13 +58,26 @@ Router.get('/:id', async (request, response) => {
 })
 
 Router.post('/verif', isLogged, (request, response) => {
-    // get the value from the user
-
-    // ge the value searched by getting the game
-
-    // make the verification
-
-    // send the result
+    function guessWord(guessedWord, userGuess) {
+        const modifiedString = Array.from(guessedWord, (char, index) => {
+          if (char === userGuess[index]) {
+            return '1';
+          } else if (guessedWord.includes(userGuess[index])) {
+            return '0';
+          } else {
+            return 'x';
+          }
+        }).join('');
+      
+        const response = {
+          word: userGuess,
+          response: modifiedString,
+          game: {}
+        };
+      
+        return response;
+      }
+      
 
 
     if (typeof request.body.word === 'undefined') {
